@@ -1,10 +1,61 @@
 <html>
   <head>
-  </head>
-  <body>
+    <script charset="utf-8" type="text/javascript" src="handlebars-v2.0.0.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <link rel="stylesheet" type="text/css" href="/dist/semantic.min.css">
-    <script src="/dist/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/semantic-ui/dist/semantic.min.css">
+    <script src="bower_components/semantic-ui/dist/semantic.min.js"></script>
+  </head>
+  <body>
+    <div id="header" class="ui huge center aligned red header">
+      M A S H
+    </div>
+
+
+    <div class="ui grid">
+      <div class ="row">
+        <div class="one wide column"></div>
+        <div class="five wide column">
+          <h3>Will you marry a person you...</h3>
+        </div>
+
+        <div class="five wide column">
+          <h3>How many kids?</h3>
+        </div>
+
+        <div class="five wide column">
+          <h3>What will your ride be?</h3>
+        </div>
+      </div>
+
+      <div class="one wide column"></div>
+
+      <div class="five wide column">
+        <div class="ui input focus"><input type = "text" id = "spouse1" placeholder = "really like?"></div>
+        <div class="ui input focus"><input type = "text" id = "spouse2" placeholder = "really like?"></div>
+        <div class="ui input focus"><input type = "text" id = "spouse3" placeholder = "think is ok?"></div>
+        <div class="ui input focus"><input type = "text" id = "spouse4" placeholder = "don't want to marry?!"></div>
+      </div>
+
+      <div class="five wide column">
+        <div class="ui input focus"><input type = "number" id = "kids1" placeholder = "1?"></div>
+        <div class="ui input focus"><input type = "number" id = "kids2" placeholder = "2?"></div>
+        <div class="ui input focus"><input type = "number" id = "kids3" placeholder = "10?"></div>
+        <div class="ui input focus"><input type = "number" id = "kids4" placeholder = "more?"></div>
+      </div>
+
+      <div class="five wide column">
+        <div class="ui input focus"><input type = "text" id = "vehicle1" placeholder = "bike"></div>
+        <div class="ui input focus"><input type = "text" id = "vehicle2" placeholder = "hoverboard"></div>
+        <div class="ui input focus"><input type = "text" id = "vehicle3" placeholder = "sports car"></div>
+        <div class="ui input focus"><input type = "text" id = "vehicle4" placeholder = "golfcart"></div>
+      </div>
+
+      <div class ="sixteen wide center aligned column">
+        <div class="ui pink button" type="submit">Let's go!</div>
+      </div>
+    </div>
+
+
   </body>
 </html>
