@@ -1,14 +1,38 @@
 $(document).ready(function() {
   function initialize() {
+    var homeArray = ["mash", "apartment", "shack", "house"];
+    var spouseArray = ["spouse1", "spouse2", "spouse3", "spouse4"];
+    var kidsArray = ["kids1", "kids2", "kids3", "kids4"];
+    var vehicleArray = ["vehicle1", "vehicle2", "vehicle3", "vehicle4"];
+    var everythingArray = homeArray.concat(spouseArray, kidsArray, vehicleArray);
+
+    var number = 5; //this is just for practice
+
+    var resultArray = [];
+
     var resultSpouse;
     var resultKids;
     var resultVehicle;
     var resultHome;
-    submitMash();
+    mash(resultArray, number);
   }
 
-  function submitMash() {
+  function cycleThrough() {
+    var homeArray = ["mash", "apartment", "shack", "house"];
+    var spouseArray = ["spouse1", "spouse2", "spouse3", "spouse4"];
+    var kidsArray = ["kids1", "kids2", "kids3", "kids4"];
+    var vehicleArray = ["vehicle1", "vehicle2", "vehicle3", "vehicle4"];
+    var everythingArray = homeArray.concat(spouseArray, kidsArray, vehicleArray);
+    
+
+  }
+
+  function mash(resultArray, number) {
     $('body').on('click', '#mash', function(event) {
+      while(resultArray.length < number) {
+
+      }
+
       var randHome = Math.random();
     if (randHome < 0.25) {
       newHome = 'mansion';
@@ -33,6 +57,118 @@ $(document).ready(function() {
     $('body').append(results);
     });
   }
+
+  // $('.ui.form')
+  //   .form({
+  //     spouse1: {
+  //       identifier  : 'spouse1',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     spouse2: {
+  //       identifier  : 'spouse2',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     spouse3: {
+  //       identifier  : 'spouse3',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     spouse4: {
+  //       identifier  : 'spouse4',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     kids1: {
+  //       identifier  : 'kids1',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     kids2: {
+  //       identifier  : 'kids2',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     kids3: {
+  //       identifier  : 'kids3',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     kids4: {
+  //       identifier  : 'kids4',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     vehicle1: {
+  //       identifier  : 'vehicle1',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     vehicle2: {
+  //       identifier  : 'vehicle2',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     vehicle3: {
+  //       identifier  : 'vehicle3',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //     vehicle4: {
+  //       identifier  : 'vehicle4',
+  //       rules: [
+  //         {
+  //           type   : 'empty',
+  //           prompt : 'Field cannot be blank'
+  //         }
+  //       ]
+  //     },
+  //   });
 
   initialize();
 });

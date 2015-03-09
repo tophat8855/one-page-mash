@@ -1,9 +1,10 @@
 <html>
   <head>
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <link rel="stylesheet" type="text/css" href="bower_components/semantic-ui/dist/semantic.min.css">
     <script src="bower_components/semantic-ui/dist/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
     <div id="header" class="ui huge center aligned red header">
@@ -11,7 +12,7 @@
     </div>
 
     <div class="ui center aligned header">
-      <span id="mansion">Mansion</span>
+      <span class="highlighted" id="mansion">Mansion</span>
       <span id="apartment">Apartment</span>
       <span id="shack">Shack</span>
       <span id="house">House</span>
@@ -33,33 +34,64 @@
           <h3>What will your ride be?</h3>
         </div>
 
-        <div class="one wide field"></div>
-
         <div class="five wide field">
-          <div class="ui input focus"><input type = "text" id = "spouse1" placeholder = "really like?"></div>
-          <div class="ui input focus"><input type = "text" id = "spouse2" placeholder = "really like?"></div>
-          <div class="ui input focus"><input type = "text" id = "spouse3" placeholder = "think is ok?"></div>
-          <div class="ui input focus"><input type = "text" id = "spouse4" placeholder = "don't want to marry?!"></div>
+          <div class="ui input focus custom"><input type = "text" id = "spouse1" placeholder = "really like?"></div>
         </div>
 
-        <div class="five wide field">
-          <div class="ui input focus"><input type = "number" id = "kids1" placeholder = "1?"></div>
-          <div class="ui input focus"><input type = "number" id = "kids2" placeholder = "2?"></div>
-          <div class="ui input focus"><input type = "number" id = "kids3" placeholder = "10?"></div>
-          <div class="ui input focus"><input type = "number" id = "kids4" placeholder = "more?"></div>
+        <div class="five wide field disabled">
+          <div class="ui input focus"><input type = "number" id = "kids1" placeholder = "1?" disabled="true"></div>
         </div>
 
         <div class="five wide field">
           <div class="ui input focus"><input type = "text" id = "vehicle1" placeholder = "bike"></div>
+        </div>
+
+
+
+        <div class="five wide field">
+          <div class="ui input focus"><input type = "text" id = "spouse2" placeholder = "really like?"></div>
+        </div>
+
+        <div class="five wide field">
+          <div class="ui input focus"><input type = "number" id = "kids2" placeholder = "2?"></div>
+        </div>
+
+        <div class="five wide field">
           <div class="ui input focus"><input type = "text" id = "vehicle2" placeholder = "hoverboard"></div>
-          <div class="ui input focus"><input type = "text" id = "vehicle3" placeholder = "sports car"></div>
+        </div>
+
+        <div class="one wide field"></div>
+
+        <div class="five wide field">
+          <div class="ui input focus"><input type = "text" id = "spouse3" placeholder = "think is ok?"></div>
+        </div>
+
+        <div class="five wide field">
+          <div class="ui input focus"><input type = "number" id = "kids3" placeholder = "10?"></div>
+        </div>
+
+        <div class="five wide field">
+          <div class="ui input focus"><input type = "text" id = "vehicle3" placeholder = "mail truck"></div>
+        </div>
+
+        <div class="one wide field"></div>
+
+        <div class="five wide field">
+          <div class="ui input focus"><input type = "text" id = "spouse4" placeholder = "don't want to marry?!"></div>
+        </div>
+
+        <div class="five wide field">
+          <div class="ui input focus"><input type = "number" id = "kids4" placeholder = "more?"></div>
+        </div>
+
+        <div class="five wide field">
           <div class="ui input focus"><input type = "text" id = "vehicle4" placeholder = "golfcart"></div>
         </div>
 
         <div class="six wide field"></div>
 
         <div class ="five wide field">
-          <div class="fluid ui pink button" type="submit" id="mash">Let's go!</div>
+          <div class="fluid ui pink button submit" type="submit" id="mash">Let's go!</div>
         </div>
       </div>
 
