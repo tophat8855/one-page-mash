@@ -1,7 +1,5 @@
 .highlighted {
-  background-color: yellow;
-}
-
-.ui.input.highlight {
+  /*background-color: yellow;*/
+  border: 1px solid #f3fc41 !important;
   box-shadow: 0px 0px 14px #f3fc41 !important;
 }
