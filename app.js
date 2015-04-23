@@ -37,41 +37,18 @@ $(document).ready(function() {
       nextIdIndex = 0;
     }
 
-    $('#' + currentId).toggleClass('highlighted');
-    $('#' + nextId).toggleClass('highlighted');
+    $('#' + currentId).removeClass('highlighted');
+    $('#' + nextId).addClass('highlighted');
 
     if (!checkForDisabling(nextIdIndex, nextId)) {
       currentIndex = nextIdIndex;
     } else {
-      $('#' + currentId).toggleClass('highlighted');
-      $('#' + nextId).toggleClass('highlighted');
+      // $('#' + currentId).toggleClass('highlighted');
+      $('#' + nextId).removeClass('highlighted');
       if (nextIdIndex === 0) {
         currentIndex -= 1;
       }
     }
-
-
-    // // count += 1;
-    // // var currentId = currentIdFinder();
-    // var nextId;
-    // var nextIdIndex;
-    // var currentId = everythingArray[currentIndex];
-    //
-    // //checking for end of everythingArray
-    //
-    // $('#' + currentId).toggleClass('highlighted');
-    // $('#' + nextId).toggleClass('highlighted');
-    // // checkForDisabling(nextIdIndex, nextId);
-    // currentIndex += 1;
-    // console.log(currentIndex);
-    //
-    //
-    // if(currentIndex + 1 < everythingArray.length) {
-    //   nextIdIndex = currentIndex + 1;
-    //   nextId = everythingArray[nextIdIndex];
-    // } else {
-    //   nextId = everythingArray[0];
-    // }
     count += 1;
   }
 
