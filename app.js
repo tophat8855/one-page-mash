@@ -4,9 +4,9 @@ $(document).ready(function() {
   var kidsArray = ["kids1", "kids2", "kids3", "kids4"];
   var vehicleArray = ["vehicle1", "vehicle2", "vehicle3", "vehicle4"];
   var everythingArray = homeArray.concat(spouseArray, kidsArray, vehicleArray);
-  var number = 4; //this is just for practice
+  var number = 2; //this is just for practice
   var count = 1; //debugging purposes
-  var currentIndex = 0;
+  var currentIndex = -1;
   var timer;
 
   var results = {};
@@ -16,28 +16,31 @@ $(document).ready(function() {
   }
 
   function checkIfDone() {
+    console.log(results);
     if (results.home && results.spouse && results.kids && results.vehicle) {
       window.clearInterval(timer);
+      $('body').append("You will marry " + results.spouse + " and have " +
+        results.kids + " kids, live in a " + results.home + ", and cruise the town with your " +
+        results.vehicle + "!");
       console.log("ended the game");
     }
   }
 
-  // function currentIdFinder(){
-  //   return $('.highlighted')[0].id;
-  // }
-
   function moveToNextItemInArray() {
-    console.log("here");
-    currentId = everythingArray[currentIndex];
-    if (currentIndex + 1 < everythingArray.length) {
-      nextId = everythingArray[currentIndex + 1];
-      nextIdIndex = currentIndex + 1;
-    } else {
+    if(currentIndex === -1) {
       nextId = everythingArray[0];
       nextIdIndex = 0;
+    } else {
+      currentId = everythingArray[currentIndex];
+      if (currentIndex + 1 < everythingArray.length) {
+        nextId = everythingArray[currentIndex + 1];
+        nextIdIndex = currentIndex + 1;
+      } else {
+        nextId = everythingArray[0];
+        nextIdIndex = 0;
+      }
+      $('#' + currentId).removeClass('highlighted');
     }
-
-    $('#' + currentId).removeClass('highlighted');
     $('#' + nextId).addClass('highlighted');
 
     if (!checkForDisabling(nextIdIndex, nextId)) {
@@ -49,6 +52,8 @@ $(document).ready(function() {
         currentIndex -= 1;
       }
     }
+
+    checkIfDone();
     count += 1;
   }
 
@@ -56,12 +61,10 @@ $(document).ready(function() {
     if(count % number === 0) {
       $('#' + nextId).prop('disabled',true);
       $('#' + nextId).addClass('strikethrough',true);
-      console.log(nextId);
 
       everythingArray.splice(nextIdIndex, 1);
       keepResult(nextId);
 
-      console.log(everythingArray);
       return true;
     } else {
       return false;
@@ -76,7 +79,6 @@ $(document).ready(function() {
 
     if(home > -1){
       homeArray.splice(home, 1);
-      console.log(homeArray);
       if (homeArray.length === 1) {
         var homeId = homeArray[0];
         results.home = homeId;
@@ -87,10 +89,9 @@ $(document).ready(function() {
       }
     } else if (spouse > -1) {
       spouseArray.splice(spouse, 1);
-      console.log(spouseArray);
       if (spouseArray.length === 1) {
         var spouseId = spouseArray[0];
-        results.spouse = spouseId;
+        results.spouse = $('#' + spouseId).val();
         $('#' + spouseId).addClass('pinked');
 
         var spouseIndex = $.inArray(spouseId, everythingArray);
@@ -98,10 +99,9 @@ $(document).ready(function() {
       }
     } else if (kids > -1) {
       kidsArray.splice(kids, 1);
-      console.log(kidsArray);
       if (kidsArray.length === 1) {
         var kidsId = kidsArray[0];
-        results.kids = kidsId;
+        results.kids = $('#' + kidsId).val();
         $('#' + kidsId).addClass('pinked');
 
         var kidsIndex = $.inArray(kidsId, everythingArray);
@@ -109,10 +109,9 @@ $(document).ready(function() {
       }
     } else if (vehicle > -1) {
       vehicleArray.splice(vehicle, 1);
-      console.log(vehicleArray);
       if (vehicleArray.length === 1) {
         var vehicleId = vehicleArray[0];
-        results.vehicle = vehicleId;
+        results.vehicle = $('#' + vehicleId).val();
         $('#' + vehicleId).addClass('pinked');
 
         var vehicleIndex = $.inArray(vehicleId, everythingArray);
@@ -122,7 +121,8 @@ $(document).ready(function() {
   }
 
   function mash() {
-    $('body').on('click', '#mash', function(event) {
+    $('body').on('click', '#play', function(event) {
+      $('#play').remove();
       //every 7/10 of a second highlight the next item in the everything Array and unlight the one that was highlighted
       timer = window.setInterval(moveToNextItemInArray, 667);
     }
