@@ -7,3 +7,8 @@
 .strikethrough {
   text-decoration: line-through;
 }
+
+.pinked {
+  border: 1px solid #FF0080 !important;
+  box-shadow: 0px 0px 14px #FF0080 !important;
+}

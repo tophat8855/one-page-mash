@@ -54,17 +54,70 @@ $(document).ready(function() {
 
   function checkForDisabling(nextIdIndex, nextId) {
     if(count % number === 0) {
-
-      console.log("yep!");
       $('#' + nextId).prop('disabled',true);
-      $('#' + nextId).toggleClass('strikethrough',true);
-      everythingArray.splice(nextIdIndex, 1);
-      console.log(everythingArray);
+      $('#' + nextId).addClass('strikethrough',true);
+      console.log(nextId);
 
+      everythingArray.splice(nextIdIndex, 1);
+      keepResult(nextId);
+
+      console.log(everythingArray);
       return true;
-      // currentIndex -= 1;
     } else {
       return false;
+    }
+  }
+
+  function keepResult(nextId) {
+    var home = $.inArray(nextId, homeArray);
+    var spouse = $.inArray(nextId, spouseArray);
+    var kids = $.inArray(nextId, kidsArray);
+    var vehicle = $.inArray(nextId, vehicleArray);
+
+    if(home > -1){
+      homeArray.splice(home, 1);
+      console.log(homeArray);
+      if (homeArray.length === 1) {
+        var homeId = homeArray[0];
+        results.home = homeId;
+        $('#' + homeId).addClass('pinked');
+
+        var homeIndex = $.inArray(homeId, everythingArray);
+        everythingArray.splice(homeIndex, 1);
+      }
+    } else if (spouse > -1) {
+      spouseArray.splice(spouse, 1);
+      console.log(spouseArray);
+      if (spouseArray.length === 1) {
+        var spouseId = spouseArray[0];
+        results.spouse = spouseId;
+        $('#' + spouseId).addClass('pinked');
+
+        var spouseIndex = $.inArray(spouseId, everythingArray);
+        everythingArray.splice(spouseIndex, 1);
+      }
+    } else if (kids > -1) {
+      kidsArray.splice(kids, 1);
+      console.log(kidsArray);
+      if (kidsArray.length === 1) {
+        var kidsId = kidsArray[0];
+        results.kids = kidsId;
+        $('#' + kidsId).addClass('pinked');
+
+        var kidsIndex = $.inArray(kidsId, everythingArray);
+        everythingArray.splice(kidsIndex, 1);
+      }
+    } else if (vehicle > -1) {
+      vehicleArray.splice(vehicle, 1);
+      console.log(vehicleArray);
+      if (vehicleArray.length === 1) {
+        var vehicleId = vehicleArray[0];
+        results.vehicle = vehicleId;
+        $('#' + vehicleId).addClass('pinked');
+
+        var vehicleIndex = $.inArray(vehicleId, everythingArray);
+        everythingArray.splice(vehicleIndex, 1);
+      }
     }
   }
 
