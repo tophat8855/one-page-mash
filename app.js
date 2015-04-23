@@ -4,7 +4,7 @@ $(document).ready(function() {
   var kidsArray = ["kids1", "kids2", "kids3", "kids4"];
   var vehicleArray = ["vehicle1", "vehicle2", "vehicle3", "vehicle4"];
   var everythingArray = homeArray.concat(spouseArray, kidsArray, vehicleArray);
-  var number = 5; //this is just for practice
+  var number = 4; //this is just for practice
   var count = 1; //debugging purposes
   var currentIndex = 0;
   var timer;
@@ -43,7 +43,11 @@ $(document).ready(function() {
     if (!checkForDisabling(nextIdIndex, nextId)) {
       currentIndex = nextIdIndex;
     } else {
+      $('#' + currentId).toggleClass('highlighted');
       $('#' + nextId).toggleClass('highlighted');
+      if (nextIdIndex === 0) {
+        currentIndex -= 1;
+      }
     }
 
 
@@ -76,6 +80,7 @@ $(document).ready(function() {
 
       console.log("yep!");
       $('#' + nextId).prop('disabled',true);
+      $('#' + nextId).toggleClass('strikethrough',true);
       everythingArray.splice(nextIdIndex, 1);
       console.log(everythingArray);
 
