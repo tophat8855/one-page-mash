@@ -4,7 +4,7 @@ $(document).ready(function() {
   var kidsArray = ["kids1", "kids2", "kids3", "kids4"];
   var vehicleArray = ["vehicle1", "vehicle2", "vehicle3", "vehicle4"];
   var everythingArray = homeArray.concat(spouseArray, kidsArray, vehicleArray);
-  var number = 2; //this is just for practice
+  var number = 0; //this is just for practice
   var count = 1; //debugging purposes
   var currentIndex = -1;
   var timer;
@@ -16,12 +16,13 @@ $(document).ready(function() {
   }
 
   function checkIfDone() {
-    console.log(results);
+    //console.log(results);
     if (results.home && results.spouse && results.kids && results.vehicle) {
       window.clearInterval(timer);
       $('body').append("You will marry " + results.spouse + " and have " +
         results.kids + " kids, live in a " + results.home + ", and cruise the town with your " +
         results.vehicle + "!");
+      $('body').append('<div class="ui clear button">Start over</div>');
       console.log("ended the game");
     }
   }
@@ -125,31 +126,187 @@ $(document).ready(function() {
       $('#play').remove();
       //every 7/10 of a second highlight the next item in the everything Array and unlight the one that was highlighted
       timer = window.setInterval(moveToNextItemInArray, 667);
-    }
+    });
+  }
 
-    //   var randHome = Math.random();
-    // if (randHome < 0.25) {
-    //   newHome = 'mansion';
-    // } else if (randHome < 0.5) {
-    //   newHome = 'apartment';
-    // } else if (randHome < 0.75) {
-    //   newHome = 'shack';
-    // } else if (randHome < 1) {
-    //   newHome = 'house';
-    // }
-    //
-    // var randSpouse = Math.ceil(Math.random() * 4);
-    // newSpouse = $('#spouse' + randSpouse).val();
-    //
-    // var randKid = Math.ceil(Math.random() * 4);
-    // newKids = $('#kids' + randKid).val();
-    //
-    // var randVehicle = Math.ceil(Math.random() * 4);
-    // newVehicle = $('#vehicle' + randVehicle).val();
-    //
-    // var results = '<p> You will marry ' + newSpouse + ' and live in a fabulous ' + newHome + '! Have fun cruising the town in your ' + newVehicle + ' with ' + newKids + ' kids!</p>';
-    // $('body').append(results);
-   );
+  // HEARTS
+  var colours=new Array('#f00', '#f06', '#f0f', '#f6f', '#f39', '#f9c'); // colours of the hearts
+  var minisize=16; // smallest size of hearts in pixels
+  var maxisize=28; // biggest size of hearts in pixels
+  var hearts=66; // maximum number of hearts on screen
+  var over_or_under="over"; // set to "over" for hearts to always be on top, or "under" to allow them to float behind other objects
+
+  /*****************************
+  *JavaScript Love Heart Cursor*
+  *  (c)2013+ mf2fm web-design *
+  *   http://www.mf2fm.com/rv  *
+  *****************************/
+  var x=ox=400;
+  var y=oy=300;
+  var swide=800;
+  var shigh=600;
+  var sleft=sdown=0;
+  herz=[];
+  var herzx=[];
+  var herzy=[];
+  var herzs=[];
+  var kiss=false;
+  var heartCount = 0;
+
+  if (typeof('addRVLoadEvent')!='function') function addRVLoadEvent(funky) {
+    var oldonload=window.onload;
+    if (typeof(oldonload)!='function') window.onload=funky;
+    else window.onload=function() {
+      if (oldonload) oldonload();
+      funky();
+    };
+  }
+
+  addRVLoadEvent(mwah);
+
+  function mwah() { if (document.getElementById) {
+    var i, heart;
+    for (i=0; i<hearts; i++) {
+      heart=createDiv("auto", "auto");
+      heart.style.visibility="hidden";
+      heart.style.zIndex=(over_or_under=="over")?"1001":"0";
+      heart.style.color=colours[i%colours.length];
+      heart.style.pointerEvents="none";
+      if (navigator.appName=="Microsoft Internet Explorer") heart.style.filter="alpha(opacity=75)";
+      else heart.style.opacity=0.75;
+      heart.appendChild(document.createTextNode(String.fromCharCode(9829)));
+      document.body.appendChild(heart);
+      herz[i]=heart;
+      herzy[i]=false;
+    }
+    set_scroll();
+    set_width();
+    herzle();
+  }}
+
+  function herzle() {
+    var c;
+    if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+      ox=x;
+      oy=y;
+      for (c=0; c<hearts; c++) if (herzy[c]===false) {
+        herz[c].firstChild.nodeValue=String.fromCharCode(9829);
+        herz[c].style.left=(herzx[c]=x-minisize/2)+"px";
+        herz[c].style.top=(herzy[c]=y-minisize)+"px";
+        herz[c].style.fontSize=minisize+"px";
+        herz[c].style.fontWeight='normal';
+        herz[c].style.visibility='visible';
+        herzs[c]=minisize;
+        break;
+      }
+    }
+    for (c=0; c<hearts; c++) if (herzy[c]!==false) blow_me_a_kiss(c);
+    setTimeout(herzle, 40);
+  }
+
+  $('#play').mousedown(pucker);
+  document.onmouseup=function(){
+    number = heartCount;
+    console.log(number);
+    clearTimeout(kiss);
+  };
+
+  function pucker() {
+    heartCount += 1;
+    ox=-1;
+    oy=-1;
+    kiss=setTimeout(pucker, 250);
+  }
+
+  function blow_me_a_kiss(i) {
+    herzy[i]-=herzs[i]/minisize+i%2;
+    herzx[i]+=(i%5-2)/5;
+    if (herzy[i]<sdown-herzs[i] || herzx[i]<sleft-herzs[i] || herzx[i]>sleft+swide-herzs[i]) {
+      herz[i].style.visibility="hidden";
+      herzy[i]=false;
+    }
+    else if (herzs[i]>minisize+2 && Math.random()<0.5/hearts) break_my_heart(i);
+    else {
+      if (Math.random()<maxisize/herzy[i] && herzs[i]<maxisize) herz[i].style.fontSize=(++herzs[i])+"px";
+      herz[i].style.top=herzy[i]+"px";
+      herz[i].style.left=herzx[i]+"px";
+    }
+  }
+
+  function break_my_heart(i) {
+    var t;
+    herz[i].firstChild.nodeValue=String.fromCharCode(9676);
+    herz[i].style.fontWeight='bold';
+    herzy[i]=false;
+    for (t=herzs[i]; t<=maxisize; t++) setTimeout('herz['+i+'].style.fontSize="'+t+'px"', 60*(t-herzs[i]));
+    setTimeout('herz['+i+'].style.visibility="hidden";', 60*(t-herzs[i]));
+  }
+
+  document.onmousemove=mouse;
+  function mouse(e) {
+    if (e) {
+      y=oy=e.pageY;
+      x=ox=e.pageX;
+    }
+    else {
+      set_scroll();
+      y=oy=event.y+sdown;
+      x=ox=event.x+sleft;
+    }
+  }
+
+  window.onresize=set_width;
+  function set_width() {
+    var sw_min=999999;
+    var sh_min=999999;
+    if (document.documentElement && document.documentElement.clientWidth) {
+      if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+      if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+    }
+    if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+      if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+      if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+    }
+    if (document.body.clientWidth) {
+      if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+      if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+    }
+    if (sw_min==999999 || sh_min==999999) {
+      sw_min=800;
+      sh_min=600;
+    }
+    swide=sw_min;
+    shigh=sh_min;
+  }
+
+  window.onscroll=set_scroll;
+  function set_scroll() {
+    if (typeof(self.pageYOffset)=='number') {
+      sdown=self.Offset;
+      sleft=self.pageXOffset;
+    }
+    else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+      sdown=document.body.scrollTop;
+      sleft=document.body.scrollLeft;
+    }
+    else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+      sleft=document.documentElement.scrollLeft;
+      sdown=document.documentElement.scrollTop;
+    }
+    else {
+      sdown=0;
+      sleft=0;
+    }
+  }
+
+  function createDiv(height, width) {
+    var div=document.createElement("div");
+    div.style.position="absolute";
+    div.style.height=height;
+    div.style.width=width;
+    div.style.overflow="hidden";
+    div.style.backgroundColor="transparent";
+    return (div);
   }
 
   // $('.ui.form')
