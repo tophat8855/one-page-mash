@@ -7,15 +7,29 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
-    <div id="header" class="ui huge center aligned pink header">
-      M A S H
-    </div>
+    <div class="ui grid" id='top'>
+      <div class="five wide column">
+          <div class="ui center  pink button" id="how-to">
+            How to Play
+          </div>
+      </div>
 
-    <div class="ui center aligned header">
-      <span id="mansion">Mansion</span>
-      <span id="apartment">Apartment</span>
-      <span id="shack">Shack</span>
-      <span id="house">House</span>
+      <div class="five wide column">
+        <div id="header" class="ui huge center aligned pink header">
+          M A S H
+        </div>
+      </div>
+
+      <div class="five wide column" id="number"></div>
+
+      <div class="five wide column"></div>
+
+      <div class="five wide column center aligned ui large header">
+        <span id="mansion">Mansion</span>
+        <span id="apartment">Apartment</span>
+        <span id="shack">Shack</span>
+        <span id="house">House</span>
+      </div>
     </div>
 
     <form class="ui form" action="index.html" method="post">
@@ -72,8 +86,6 @@
           <div class="ui input focus"><input type = "text" id = "vehicle3" placeholder = "mail truck"></div>
         </div>
 
-        <div class="one wide field"></div>
-
         <div class="five wide field">
           <div class="ui input focus"><input type = "text" id = "spouse4" placeholder = "don't want to marry?!"></div>
         </div>
@@ -89,11 +101,30 @@
         <div class="five wide field"></div>
 
         <div class ="five wide field">
-          <div class="fluid ui pink button submit" type="submit" id="play">Let's go!</div>
+          <div class="fluid ui pink button submit" type="submit" id="play">Press and hold. Release when ready!</div>
         </div>
       </div>
-
     </form>
+
+    <div class="ui modal" id="how-to-modal">
+      <p>
+        Fill out the boxes. Who will you marry? How will you get around?
+      </p>
+
+      <p>
+        When you're ready, press and hold the pink button. Hearts will appear.
+        The number of hearts that appear before you choose to release the button will be your magic number.
+      </p>
+
+      <p>
+        The game will then count out each item and when it gets to the magic number, it'll cross out that option and start the counting over until the final option is chosen for each category.
+        You can also play this game with good ol' <a href="http://mashplus.com/how-to-play-mash/">paper and pencil.</a>
+      </p>
+
+      <p>
+        Your future awaits!
+      </p>
+    </div>
 
   </body>
 </html>

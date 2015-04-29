@@ -4,25 +4,29 @@ $(document).ready(function() {
   var kidsArray = ["kids1", "kids2", "kids3", "kids4"];
   var vehicleArray = ["vehicle1", "vehicle2", "vehicle3", "vehicle4"];
   var everythingArray = homeArray.concat(spouseArray, kidsArray, vehicleArray);
-  var number = 0; //this is just for practice
-  var count = 1; //debugging purposes
+  var number = 0;
+  var heartCount = 0;
+  var count = 1;
   var currentIndex = -1;
   var timer;
 
   var results = {};
+
+  $('#how-to').click(function() {
+    $('#how-to-modal').modal('show');
+  });
 
   function initialize() {
     mash();
   }
 
   function checkIfDone() {
-    //console.log(results);
     if (results.home && results.spouse && results.kids && results.vehicle) {
       window.clearInterval(timer);
       $('body').append("You will marry " + results.spouse + " and have " +
         results.kids + " kids, live in a " + results.home + ", and cruise the town with your " +
         results.vehicle + "!");
-      $('body').append('<div class="ui clear button">Start over</div>');
+      $('body').append('<div class="ui clear button" id="refresh">Start over</div>');
       console.log("ended the game");
     }
   }
@@ -47,7 +51,6 @@ $(document).ready(function() {
     if (!checkForDisabling(nextIdIndex, nextId)) {
       currentIndex = nextIdIndex;
     } else {
-      // $('#' + currentId).toggleClass('highlighted');
       $('#' + nextId).removeClass('highlighted');
       if (nextIdIndex === 0) {
         currentIndex -= 1;
@@ -122,12 +125,14 @@ $(document).ready(function() {
   }
 
   function mash() {
-    $('body').on('click', '#play', function(event) {
+    $('body').on('mouseup', '#play', function(event) {
       $('#play').remove();
       //every 7/10 of a second highlight the next item in the everything Array and unlight the one that was highlighted
       timer = window.setInterval(moveToNextItemInArray, 667);
     });
   }
+
+  //$('body').on('click', '#refresh'), function() {window.reload()};
 
   // HEARTS
   var colours=new Array('#f00', '#f06', '#f0f', '#f6f', '#f39', '#f9c'); // colours of the hearts
@@ -151,7 +156,7 @@ $(document).ready(function() {
   var herzy=[];
   var herzs=[];
   var kiss=false;
-  var heartCount = 0;
+  var heart = 0;
 
   if (typeof('addRVLoadEvent')!='function') function addRVLoadEvent(funky) {
     var oldonload=window.onload;
@@ -205,11 +210,15 @@ $(document).ready(function() {
   }
 
   $('#play').mousedown(pucker);
-  document.onmouseup=function(){
+  $('#play').mouseup(function(){
     number = heartCount;
-    console.log(number);
+    if(!$('#number-hearts').length){
+      console.log(number);
+      $('#number').append("<p class='ui center aligned header' id='number-hearts'>Your number:</p>");
+      $('#number').append("<p class='ui center aligned huge header' id='number-hearts'>" + number + "</p>");
+    }
     clearTimeout(kiss);
-  };
+  });
 
   function pucker() {
     heartCount += 1;
