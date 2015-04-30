@@ -26,7 +26,7 @@ $(document).ready(function() {
       $('body').append("You will marry " + results.spouse + " and have " +
         results.kids + " kids, live in a " + results.home + ", and cruise the town with your " +
         results.vehicle + "!");
-      $('body').append('<div class="ui clear button" id="refresh">Start over</div>');
+      //$('body').append('<div class="ui clear button" id="refresh">Start over</div>');
       console.log("ended the game");
     }
   }
